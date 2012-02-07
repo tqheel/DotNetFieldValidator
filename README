@@ -1,0 +1,6 @@
+The purpose of this project is to share some code that I have developed for validating form data using jQuery and a web service.
+
+Components of the Demo:
+- A simple ASP.Net Form for for collecting contact data
+- A jQuery AJAX call to a C# Web Service
+- A C# Class that validates the form data and returns error messages encoded as HTML where validation fails
