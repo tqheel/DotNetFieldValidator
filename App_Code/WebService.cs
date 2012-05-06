@@ -7,12 +7,13 @@ using System.Web.Script.Services;
 
 [WebService(Namespace = "http://tempuri.org/")]
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+// To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
+[System.Web.Script.Services.ScriptService]
 public class WebService : System.Web.Services.WebService {
 
     [WebMethod(EnableSession = true)]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json, UseHttpGet = false)]
-
-    public void SaveDataFromWebForm(int RecordID, string FirstName, string LastName, string Email, string PhoneNumber)
+    public void SaveDataFromWebForm(string FirstName, string LastName, string Email, string PhoneNumber)
     {
         //Validate Each Parameter/Field from web form and concatenate error message for each field that fails
         string errorMsg = string.Empty;
