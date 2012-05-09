@@ -3,4 +3,4 @@ The purpose of this project is to share some code that I have developed for vali
 Components of the Demo:
 - A simple ASP.Net Form for for collecting contact data
 - A jQuery AJAX call to a C# Web Service
-- A C# Class that validates the form data and returns error messages encoded as HTML where validation fails
+- A C# Class that validates the form data and returns HTML error messages where validation fails
