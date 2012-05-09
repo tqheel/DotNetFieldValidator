@@ -83,7 +83,7 @@ public class Utils
     }
 
 
-    public static DateTime GetLocalBapTimeStamp()
+    public static DateTime GetLocalTimeStamp()
     {
         return ConvertTimeToETZ(DateTime.Now);
     }

@@ -25,8 +25,13 @@ public class WebService : System.Web.Services.WebService {
             errorMsg+=Utils.ComposeErrMsg("First Name must be 50 characters or less.");
             errorsCaught=true;
         }
-
-        if(!Utils.IsStringShortEnough(LastName, 50))
+        //Make sure last name is populated, and if so check to make sure < 50 charss
+        if (!Utils.IsFieldPopulated(LastName))
+        {
+            errorMsg += Utils.ComposeErrMsg("Last Name cannot be blank.");
+            errorsCaught = true;
+        }
+        else if(!Utils.IsStringShortEnough(LastName, 50))
         {
             errorMsg+=Utils.ComposeErrMsg("Last Name must be 50 characters or less.");
             errorsCaught=true;
@@ -38,18 +43,19 @@ public class WebService : System.Web.Services.WebService {
             errorsCaught=true;
         }
 
-        if(!Utils.IsStringShortEnough(PhoneNumber, 50))
-        {
-            errorMsg+=Utils.ComposeErrMsg("Phone number must be 50 characters or less.");
-            errorsCaught=true;
-        }
-
         //Now validate that the actual email address is a valid address
         if (!Utils.IsValidEmail(Email))
         {
             errorMsg += Utils.ComposeErrMsg("The e-mail address provided is not valid.");
             errorsCaught = true;
         }
+
+        if (!Utils.IsStringShortEnough(PhoneNumber, 50))
+        {
+            errorMsg += Utils.ComposeErrMsg("Phone number must be 50 characters or less.");
+            errorsCaught = true;
+        }
+
         //Now check the phone number as valid US number
         if (!Utils.IsValidUSOrCanadaPhone(PhoneNumber))
         {
