@@ -104,7 +104,20 @@ public class Utils
         return match.IsMatch(phone);
     }
 
-    
+    public class _Error
+    {
+        public string Msg { get; set; }
+        public bool Caught { get; set; }
+    }
+
+    public static _Error UpdateErrorObject(_Error oldError, string newMsg, bool e)
+    {
+        _Error error = new _Error();
+        error.Msg = oldError.Msg + ComposeErrMsg(newMsg);
+        error.Caught = e;
+        return error;
+    }
+
 }
 
 

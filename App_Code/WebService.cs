@@ -18,53 +18,45 @@ public class WebService : System.Web.Services.WebService {
         //Validate Each Parameter/Field from web form and concatenate error message for each field that fails
         string errorMsg = string.Empty;
         bool errorsCaught = false;
-
+        Utils._Error e = new Utils._Error();
         //First make sure string fields are short enough to store in our database; for this example we are assuming the string fields are being stored in varchar(50) fields in the db.
         if(!Utils.IsStringShortEnough(FirstName, 50))
         {
-            errorMsg+=Utils.ComposeErrMsg("First Name must be 50 characters or less.");
-            errorsCaught=true;
+            e=Utils.UpdateErrorObject(e,"First Name must be 50 characters or less.", true);
         }
         //Make sure last name is populated, and if so check to make sure < 50 charss
         if (!Utils.IsFieldPopulated(LastName))
         {
-            errorMsg += Utils.ComposeErrMsg("Last Name cannot be blank.");
-            errorsCaught = true;
+            e = Utils.UpdateErrorObject(e, "Last Name cannot be blank.", true);
         }
         else if(!Utils.IsStringShortEnough(LastName, 50))
         {
-            errorMsg+=Utils.ComposeErrMsg("Last Name must be 50 characters or less.");
-            errorsCaught=true;
+            e = Utils.UpdateErrorObject(e, "Last Name must be 50 characters or less.",true);
         }
 
         if(!Utils.IsStringShortEnough(Email, 50))
         {
-            errorMsg+=Utils.ComposeErrMsg("E-mail must be 50 characters or less.");
-            errorsCaught=true;
+            e = Utils.UpdateErrorObject(e, "E-mail must be 50 characters or less.",true);
         }
 
         //Now validate that the actual email address is a valid address
         if (!Utils.IsValidEmail(Email))
         {
-            errorMsg += Utils.ComposeErrMsg("The e-mail address provided is not valid.");
-            errorsCaught = true;
+            e = Utils.UpdateErrorObject(e, "The e-mail address provided is not valid.",true);
         }
 
         if (!Utils.IsStringShortEnough(PhoneNumber, 50))
         {
-            errorMsg += Utils.ComposeErrMsg("Phone number must be 50 characters or less.");
-            errorsCaught = true;
+            e = Utils.UpdateErrorObject(e, "Phone number must be 50 characters or less.",true);
         }
 
         //Now check the phone number as valid US number
         if (!Utils.IsValidUSOrCanadaPhone(PhoneNumber))
         {
-            errorMsg += Utils.ComposeErrMsg("The phone number provided is not valid.");
-            errorsCaught = true;
+            e = Utils.UpdateErrorObject(e, "The phone number provided is not valid.", true);
         }
-
         //If any validation failed, throw exception, with concatenated error message, which is formatted as a set of HTML <li> elements
-        if (errorsCaught) throw new Exception(errorMsg);
+        if (e.Caught) throw new Exception(e.Msg);
 
         //Note: there are a few other validation methods in the Utils class not used in above code. Check 'em out...
             //For example, there is code for ensuring a server datestamp gets converted to Eastern time zone
