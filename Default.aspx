@@ -13,7 +13,9 @@
         body { padding: 0 50px 0 50px; font-family:Courier; background-color: Teal;}
         #container { background-color: White; width: 600px; padding: 10px 10px 10px 10px; }
         .error { color:Red; }
-        #comments, #footer, #demo-form { width: 600px;}s
+        #comments, #footer, #demo-form { width: 600px;}
+        #page-footer { font-size: 80%; width: 600px; text-align: center; padding: 25px 0 25px 0; color: White; }
+        #page-footer a { color: Silver; }
     </style>
 
     <script type="text/javascript">
@@ -111,6 +113,12 @@
                 <p>The error messages are diplayed as HTML ordered list items. One thing I would like to add at some point: mark the failed
                 fields with an indicator. I can't think if an easy way to do that, so suggestions are welcome.</p>
             </div>
+        </div>
+        <div id="page-footer">
+            
+            This demo is an <a href="https://github.com/tqheel/DotNetFieldValidator">open source project</a> by Todd E. Qualls<br />
+            Learn more about me and my other projects at <a href="http://www.teqknowledgy.com">www.teqknowledgy.com</a>
+            
         </div>
     </form>
 </body>
